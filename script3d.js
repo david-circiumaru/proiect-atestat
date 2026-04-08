@@ -75,7 +75,7 @@ window.addEventListener('keydown', (event) => {
 
 // IMPORTANT: Put your file in the 'public' folder. 
 // Vite will then find it at exactly '/fundal.glb'
-loader.load('./fundal.glb', (glb) => {
+loader.load('/fundal.glb', (glb) => {
     console.log("Model loaded successfully!");
     const model = glb.scene;
     scene.add(model);
