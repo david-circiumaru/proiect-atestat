@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: Arial;
+}
+
+h1 {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: black;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    margin-top: 50px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+}
+
+/* CANVAS = FUNDAL */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background-color: #ffffff; 
+}
