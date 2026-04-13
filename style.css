@@ -12,10 +12,16 @@ h1 {
 }
 
 .content {
-    position: relative;
+    position: fixed;
+    left: 40px;               /* distanță de marginea stângă */
+    top: 50%;
+    transform: translateY(-50%); /* centru pe verticală */
+
+    display: flex;
+    flex-direction: column;   /* unul sub altul */
+    gap: 20px;
+
     z-index: 1;
-    text-align: center;
-    margin-top: 50px;
 }
 
 button {
