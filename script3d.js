@@ -33,8 +33,8 @@ controls.target.set(-0.61, 2.04, -0.01);
 controls.minPolarAngle = 0;           // High point
 controls.maxPolarAngle = Math.PI / 2
 
-controls.minAzimuthAngle = -Math.PI / -3; // -45 degrees
-//controls.minAzimuthAngle = -Math.PI / 3; // -45 degrees
+//controls.minAzimuthAngle = -Math.PI / -3; // -45 degrees
+controls.minAzimuthAngle = -Math.PI / 3; // -45 degrees
 //controls.maxAzimuthAngle = Math.PI / 3;  // 45 degrees
 //controls.minPolarAngle = Math.PI / 4;  // 45°
 //controls.maxPolarAngle = 3 * Math.PI / 4; // 135°
