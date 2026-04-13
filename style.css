@@ -38,37 +38,39 @@ body {
 
 .content {
     position: fixed;
-    left: 30px;
+    left: 40px;
     top: 50%;
     transform: translateY(-50%);
 
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px; /* mai mult spațiu între butoane */
 
-    padding: 25px 20px; /* spațiu în interior */
-    background-color: rgba(255, 255, 255, 0.9); /* alb ușor transparent */
-    border-radius: 15px;
+    padding: 40px 30px; /* mai mare */
+    min-width: 280px; /* mai lată */
 
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
 
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+
+    align-items: center;
     z-index: 1;
 }
 
 button {
   position: relative;
   display: inline-block;
-  padding: 15px 30px;
+  padding: 20px 40px; /* mai mare */
   text-align: center;
-  font-size: 18px;
+  font-size: 22px; /* mai mare */
   letter-spacing: 1px;
-  text-decoration: none;
   color: #725AC1;
   background: transparent;
   cursor: pointer;
   transition: ease-out 0.5s;
-  border: 2px solid #725AC1;
-  border-radius: 10px;
+  border: 3px solid #725AC1; /* mai gros */
+  border-radius: 12px;
   box-shadow: inset 0 0 0 0 #725AC1;
 }
 
@@ -78,7 +80,7 @@ button:hover {
 }
 
 button:active {
-  transform: scale(0.9);
+  transform: scale(0.92);
 }
 
 /* CANVAS = FUNDAL */
