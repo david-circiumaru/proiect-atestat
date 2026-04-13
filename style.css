@@ -4,15 +4,36 @@ body {
     font-family: Arial;
 }
 
-h1 {
-    position: relative;
-    z-index: 1;
+/* CONTAINER TITLU */
+.title {
+    position: fixed;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
     text-align: center;
-    color: black;
-    text-shadow: 2px 2px 4px rgba(179, 147, 211, 0.1),
-               3px 4px 4px rgba(179, 147, 211, 0.15),
-               4px 6px 4px rgba(179, 147, 211, 0.2),
-               5px 8px 4px rgab(179, 147, 211, 0.25);
+    z-index: 1;
+}
+
+/* TEXT PRINCIPAL */
+.title h1 {
+    font-size: 60px;
+    font-weight: bold;
+    color: #333;
+
+    text-shadow: 
+        2px 2px 4px rgba(179, 147, 211, 0.1),
+        3px 4px 4px rgba(179, 147, 211, 0.15),
+        4px 6px 4px rgba(179, 147, 211, 0.2),
+        5px 8px 4px rgba(179, 147, 211, 0.25);
+}
+
+/* SUBTEXT (Virtuală) */
+.title .sub {
+    display: block;
+    font-size: 30px;
+    font-weight: 500;
+    color: #777;
+    margin-top: 10px;
 }
 
 .content {
