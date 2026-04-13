@@ -13,7 +13,7 @@ const sizes = {
 };
 
 // 2. Camera Setup
-const camera = new THREE.PerspectiveCamera(50, sizes.width / sizes.height, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(40, sizes.width / sizes.height, 0.1, 1000);
 // Coordinates from your portfolio setup
 camera.position.set(10.45, 2.24, -0.09);
 
