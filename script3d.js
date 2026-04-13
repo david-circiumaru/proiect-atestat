@@ -34,6 +34,7 @@ controls.minPolarAngle = 0;           // High point
 controls.maxPolarAngle = Math.PI / 2
 
 controls.minAzimuthAngle = -Math.PI / -3; // -45 degrees
+controls.minAzimuthAngle = -Math.PI / 3; // -45 degrees
 //controls.maxAzimuthAngle = Math.PI / 3;  // 45 degrees
 
 controls.minDistance = 5;  // Minimum zoom in
