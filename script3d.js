@@ -35,9 +35,11 @@ controls.maxPolarAngle = Math.PI / 2
 
 //controls.minAzimuthAngle = -Math.PI / -3; // -45 degrees
 //controls.minAzimuthAngle = -Math.PI / 3; // -45 degrees
-controls.maxAzimuthAngle = Math.PI / 3;  // 45 degrees
+//controls.maxAzimuthAngle = Math.PI / 3;  // 45 degrees
 //controls.minPolarAngle = Math.PI / 4;  // 45°
 //controls.maxPolarAngle = 3 * Math.PI / 4; // 135°
+controls.minAzimuthAngle = -Math.PI / 4;
+controls.maxAzimuthAngle =  Math.PI / 4;
 
 controls.minDistance = 5;  // Minimum zoom in
 controls.maxDistance = 13; // Maximum zoom out
