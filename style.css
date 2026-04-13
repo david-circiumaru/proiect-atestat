@@ -16,7 +16,7 @@ body {
 
 /* TEXT PRINCIPAL */
 .title h1 {
-    font-size: 60px;
+    font-size: 90px;
     font-weight: bold;
     color: #333;
 
@@ -30,7 +30,7 @@ body {
 /* SUBTEXT (Virtuală) */
 .title .sub {
     display: block;
-    font-size: 30px;
+    font-size: 50px;
     font-weight: 500;
     color: #777;
     margin-top: 10px;
