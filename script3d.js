@@ -117,8 +117,6 @@ function isMobile() {
 // după ce setezi camera.position.z
 if (isMobile()) {
     camera.position.z = 10; // mai departe = model mai mic
-} else {
-    camera.position.z = 5; // desktop
 }
 
 tick();
