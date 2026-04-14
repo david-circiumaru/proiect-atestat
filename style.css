@@ -72,6 +72,8 @@ button {
   border: 3px solid #725AC1; /* mai gros */
   border-radius: 12px;
   box-shadow: inset 0 0 0 0 #725AC1;
+    width: 100%; /* ocupă toată bara */
+  max-width: 240px; /* limită ca să nu fie prea late */
 }
 
 button:hover {
