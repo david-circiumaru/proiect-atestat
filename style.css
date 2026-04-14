@@ -287,50 +287,12 @@ canvas {
 /* =======================
    CONTACT
 ======================= */
-.contact {
-    position: fixed;
-    left: 40px;
-    bottom: 40px;
-
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-
-    padding: 25px 30px;
-
-    min-width: 260px;
-
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 20px;
-
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
-
-    z-index: 2;
-    align-items: center;
-}
-
-.contact h3 {
-    margin: 0;
-    font-size: 20px;
-    color: #333;
-}
-
-/* linkuri */
-.contact a {
+.card a {
+    color: inherit;
     text-decoration: none;
-    color: #725AC1;
-    font-size: 18px;
-
-    padding: 10px 15px;
-    border: 2px solid #725AC1;
-    border-radius: 10px;
-
-    transition: 0.3s ease;
-    width: 100%;
-    text-align: center;
+    font-weight: bold;
 }
 
-.contact a:hover {
-    background: #725AC1;
-    color: white;
+.card a:hover {
+    text-decoration: underline;
 }

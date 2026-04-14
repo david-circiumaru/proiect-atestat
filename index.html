@@ -113,18 +113,46 @@
     <!-- SCRIPT -->
     <script type="module" src="script3d.js"></script>
 
-    <!-- CONTACT BOX -->
-    <div class="contact">
-        <h3>Contact</h3>
+    <!-- CONTACT -->
+    <!-- CONTACT BUTTON -->
+    <button onclick="openModal('modal-contact')">Contact</button>
 
-     <a href="https://instagram.com/david_6374" target="_blank">
-           Instagram
-      </a>
+    <!-- CONTACT MODAL -->
+    <div id="modal-contact" class="modal hidden">
+      <div class="modal-content">
 
-     <a href="mailto:david.circiumaru@gmail.com">
-            Email
-     </a>
+         <button class="close-btn" onclick="closeModal('modal-contact')">
+                <div class="X"></div>
+             <div class="Y"></div>
+         </button>
+
+          <h2>Contact</h2>
+
+           <div class="recipes">
+
+             <div class="card">
+                  <h3>Instagram</h3>
+                   <p>
+                     <a href="https://instagram.com/david_6374" target="_blank">
+                            @david_6374
+                       </a>
+                    </p>
+             </div>
+
+                <div class="card">
+                    <h3>Email</h3>
+                  <p>
+                      <a href="mailto:david.circiumaru@gmail.com">
+                           david.circiumaru@gmail.com
+                      </a>
+                 </p>
+              </div>
+
+            </div>
+
+     </div>
     </div>
+        
 
 </body>
 </html>
