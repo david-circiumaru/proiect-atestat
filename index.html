@@ -6,78 +6,111 @@
     <title>Bucătăria Virtuală</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
+    <!-- TITLU -->
     <div class="title">
-    <h1>
-        Bucătăria<br>
-        <span class="sub">Virtuală</span>
-    </h1>
-</div>
+        <h1>
+            Bucătăria<br>
+            <span class="sub">Virtuală</span>
+        </h1>
+    </div>
 
+    <!-- BUTOANE -->
     <div class="content">
-    <button onclick="openModal('modal-main')">Feluri principale</button>
-    <button onclick="openModal('modal-dessert')">Deserturi</button>
+        <button onclick="openModal('modal-main')">Feluri principale</button>
+        <button onclick="openModal('modal-dessert')">Deserturi</button>
     </div>
-    <!-- MODAL FELURI PRINCIPALE -->
-<div id="modal-main" class="modal hidden">
-    <div class="modal-content">
-        
-        <button class="close-btn" onclick="closeModal('modal-main')">
-            <div class="X"></div>
-            <div class="Y"></div>
-        </button>
 
-        <h2>Feluri principale</h2>
+    <!-- ================= MODAL MAIN ================= -->
+    <div id="modal-main" class="modal hidden">
+        <div class="modal-content">
 
-<div class="recipes">
+            <button class="close-btn" onclick="closeModal('modal-main')">
+                <div class="X"></div>
+                <div class="Y"></div>
+            </button>
 
-    <div class="card" onclick="toggleCard(this)">
-    <h3>Paste Carbonara</h3>
-    <p>Paste, ouă, bacon, parmezan</p>
+            <h2>Feluri principale</h2>
 
-    <div class="more">
-        <p><b>Rețetă:</b></p>
-        <p>1. Fierbe pastele</p>
-        <p>2. Prăjește baconul</p>
-        <p>3. Amestecă cu ou și parmezan</p>
+            <div class="recipes">
+
+                <div class="card" onclick="toggleCard(this)">
+                    <h3>Paste Carbonara</h3>
+                    <p>Paste, ouă, bacon, parmezan</p>
+
+                    <div class="more">
+                        <p><b>Rețetă:</b></p>
+                        <p>1. Fierbe pastele</p>
+                        <p>2. Prăjește baconul</p>
+                        <p>3. Amestecă cu ou și parmezan</p>
+                    </div>
+                </div>
+
+                <div class="card" onclick="toggleCard(this)">
+                    <h3>Pizza Margherita</h3>
+                    <p>Roșii, mozzarella, busuioc</p>
+
+                    <div class="more">
+                        <p><b>Rețetă:</b></p>
+                        <p>1. Aluat</p>
+                        <p>2. Sos roșii</p>
+                        <p>3. Mozzarella + cuptor</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
     </div>
-</div>
 
-</div>
+    <!-- ================= MODAL DESSERT ================= -->
+    <div id="modal-dessert" class="modal hidden">
+        <div class="modal-content">
 
+            <button class="close-btn" onclick="closeModal('modal-dessert')">
+                <div class="X"></div>
+                <div class="Y"></div>
+            </button>
+
+            <h2>Deserturi</h2>
+
+            <div class="recipes">
+
+                <div class="card" onclick="toggleCard(this)">
+                    <h3>Tiramisu</h3>
+                    <p>Mascarpone, cafea, cacao</p>
+
+                    <div class="more">
+                        <p><b>Rețetă:</b></p>
+                        <p>1. Biscuiți în cafea</p>
+                        <p>2. Cremă mascarpone</p>
+                        <p>3. Strat + cacao</p>
+                    </div>
+                </div>
+
+                <div class="card" onclick="toggleCard(this)">
+                    <h3>Cheesecake</h3>
+                    <p>Brânză, biscuiți, fructe</p>
+
+                    <div class="more">
+                        <p><b>Rețetă:</b></p>
+                        <p>1. Blat biscuiți</p>
+                        <p>2. Cremă brânză</p>
+                        <p>3. Frigider 4h</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
     </div>
-</div>
 
-<!-- MODAL DESERTURI -->
-<div id="modal-dessert" class="modal hidden">
-    <div class="modal-content">
-        
-        <button class="close-btn" onclick="closeModal('modal-dessert')">
-            <div class="X"></div>
-            <div class="Y"></div>
-        </button>
-
-        <h2>Deserturi</h2>
-        <div class="recipes">
-
-    <div class="card" onclick="toggleCard(this)">
-    <h3>Paste Carbonara</h3>
-    <p>Paste, ouă, bacon, parmezan</p>
-
-    <div class="more">
-        <p><b>Rețetă:</b></p>
-        <p>1. Fierbe pastele</p>
-        <p>2. Prăjește baconul</p>
-        <p>3. Amestecă cu ou și parmezan</p>
-    </div>
-</div>
-
-    </div>
-</div>
-
+    <!-- FUNDAL 3D -->
     <canvas id="experience-canvas"></canvas>
 
+    <!-- SCRIPT -->
     <script type="module" src="script3d.js"></script>
 
 </body>
