@@ -16,9 +16,38 @@
 </div>
 
     <div class="content">
-        <button>Feluri principale</button>
-        <button>Deserturi</button>
+    <button onclick="openModal('modal-main')">Feluri principale</button>
+    <button onclick="openModal('modal-dessert')">Deserturi</button>
     </div>
+    <!-- MODAL FELURI PRINCIPALE -->
+<div id="modal-main" class="modal hidden">
+    <div class="modal-content">
+        
+        <button class="close-btn" onclick="closeModal('modal-main')">
+            <div class="X"></div>
+            <div class="Y"></div>
+        </button>
+
+        <h2>Feluri principale</h2>
+        <p>Aici vei pune rețetele 👀</p>
+
+    </div>
+</div>
+
+<!-- MODAL DESERTURI -->
+<div id="modal-dessert" class="modal hidden">
+    <div class="modal-content">
+        
+        <button class="close-btn" onclick="closeModal('modal-dessert')">
+            <div class="X"></div>
+            <div class="Y"></div>
+        </button>
+
+        <h2>Deserturi</h2>
+        <p>Aici vei pune deserturile 🍰</p>
+
+    </div>
+</div>
 
     <canvas id="experience-canvas"></canvas>
 

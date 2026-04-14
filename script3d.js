@@ -119,4 +119,12 @@ if (isMobile()) {
     camera.position.z = 10; // mai departe = model mai mic
 }
 
+window.openModal = function(id) {
+    document.getElementById(id).classList.remove('hidden');
+}
+
+window.closeModal = function(id) {
+    document.getElementById(id).classList.add('hidden');
+}
+
 tick();
