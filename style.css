@@ -292,10 +292,9 @@ canvas {
     left: 40px;
     bottom: 40px;
 
-    width: 200px;
-
-    padding: 20px;
-    font-size: 20px;
+    width: 260px; /* SAME AS MAIN PANEL */
+    padding: 20px 40px;
+    font-size: 22px;
 
     color: #725AC1;
     background: rgba(255,255,255,0.9);
@@ -306,12 +305,19 @@ canvas {
     cursor: pointer;
     transition: 0.4s ease;
 
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
     z-index: 5;
+
+    text-align: center;
 }
 
 .contact-btn:hover {
-    background: #725AC1;
     color: white;
-    transform: scale(1.05);
+    background: #725AC1;
+    transform: scale(1.03);
+}
+
+/* ICON Instagram uniformizare */
+.card h3 img {
+    filter: none;
 }
