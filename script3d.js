@@ -2,25 +2,17 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-/* =========================
-   SCENE
-========================= */
+// 1. Scene Setup
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x555555);
+scene.background = new THREE.Color(0x555555); // FIXED
 
-/* =========================
-   CANVAS + SIZE
-========================= */
 const canvas = document.querySelector("#experience-canvas");
-
 const sizes = {
     width: window.innerWidth,
     height: window.innerHeight
 };
 
-/* =========================
-   CAMERA
-========================= */
+// 2. Camera Setup
 const camera = new THREE.PerspectiveCamera(
     25,
     sizes.width / sizes.height,
@@ -28,12 +20,10 @@ const camera = new THREE.PerspectiveCamera(
     1000
 );
 
-/* initial position (desktop) */
+// Coordinates 
 camera.position.set(10.45, 2.24, -0.09);
 
-/* =========================
-   RENDERER
-========================= */
+// 3. Renderer Setup
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
     antialias: true
@@ -42,13 +32,20 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-/* =========================
-   CONTROLS
-========================= */
+// 4. Orbit Controls 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 
 controls.target.set(-0.61, 2.04, -0.01);
+
+controls.minPolarAngle = 0;
+controls.maxPolarAngle = Math.PI / 2;
+
+// controls.minAzimuthAngle = -Math.PI / -3;
+// controls.minAzimuthAngle = -Math.PI / 3;
+// controls.maxAzimuthAngle = Math.PI / 3;
+// controls.minPolarAngle = Math.PI / 4;
+// controls.maxPolarAngle = 3 * Math.PI / 4;
 
 controls.minAzimuthAngle = 50 * Math.PI / 180;
 controls.maxAzimuthAngle = 130 * Math.PI / 180;
@@ -56,9 +53,7 @@ controls.maxAzimuthAngle = 130 * Math.PI / 180;
 controls.minDistance = 5;
 controls.maxDistance = 13;
 
-/* =========================
-   LIGHTING
-========================= */
+// 5. Lighting
 const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
 scene.add(ambientLight);
 
@@ -66,39 +61,38 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
 directionalLight.position.set(5, 10, 7);
 scene.add(directionalLight);
 
-/* =========================
-   MOBILE CAMERA FIX
-========================= */
-function updateCameraForDevice() {
-    if (window.innerWidth <= 768) {
-        camera.position.set(10.45, 2.24, 6); // mai departe pe telefon
-        camera.fov = 35;
-    } else {
-        camera.position.set(10.45, 2.24, -0.09);
-        camera.fov = 25;
-    }
-
-    camera.updateProjectionMatrix();
-}
-
-updateCameraForDevice();
-
-/* =========================
-   LOADER
-========================= */
+// 7. Loading Manager & GLTF Loader
 const manager = new THREE.LoadingManager();
+let canRender = false;
 
 manager.onLoad = () => {
     console.log("All assets loaded!");
+    canRender = true;
 };
 
+
+
 const loader = new GLTFLoader(manager);
+
+window.addEventListener('keydown', (event) => {
+    if (event.code === 'Space') {
+        const pos = camera.position;
+        const tar = controls.target;
+
+        console.log('--- CAMERA SETTINGS ---');
+        console.log(`Position: ${pos.x.toFixed(2)}, ${pos.y.toFixed(2)}, ${pos.z.toFixed(2)}`);
+        console.log(`Target: ${tar.x.toFixed(2)}, ${tar.y.toFixed(2)}, ${tar.z.toFixed(2)}`);
+        console.log('-----------------------');
+    }
+});
+
 
 loader.load(
     '/fundal2.glb',
     (glb) => {
-        console.log("Model loaded!");
-        scene.add(glb.scene);
+        console.log("Model loaded successfully!");
+        const model = glb.scene;
+        scene.add(model);
     },
     undefined,
     (error) => {
@@ -106,9 +100,7 @@ loader.load(
     }
 );
 
-/* =========================
-   RESIZE
-========================= */
+// 8. Handle Window Resize
 window.addEventListener("resize", () => {
     sizes.width = window.innerWidth;
     sizes.height = window.innerHeight;
@@ -118,24 +110,26 @@ window.addEventListener("resize", () => {
 
     renderer.setSize(sizes.width, sizes.height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-    updateCameraForDevice();
 });
 
-/* =========================
-   ANIMATION LOOP
-========================= */
+// 9. Animation Loop
 const tick = () => {
     controls.update();
     renderer.render(scene, camera);
-    requestAnimationFrame(tick);
+
+    window.requestAnimationFrame(tick);
 };
 
-tick();
+function isMobile() {
+    return window.innerWidth <= 768;
+}
 
-/* =========================
-   MODALS + CARDS (UI LOGIC)
-========================= */
+
+if (isMobile()) {
+    camera.position.z = 10;
+}
+
+// UI FUNCTIONS
 window.openModal = function (id) {
     document.getElementById(id).classList.remove('hidden');
 };
@@ -147,3 +141,5 @@ window.closeModal = function (id) {
 window.toggleCard = function (card) {
     card.classList.toggle("active");
 };
+
+tick();
