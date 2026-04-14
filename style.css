@@ -163,10 +163,13 @@ canvas {
 .modal-content {
     position: relative;
     background: white;
-    padding: 40px;
+    padding: 30px;
     border-radius: 20px;
-    width: 80%;
-    max-width: 500px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh; /* 🔥 LIMITĂ PE ÎNĂLȚIME */
+
+    overflow-y: auto; /* 🔥 SCROLL */
 
     box-shadow: 0 20px 60px rgba(0,0,0,0.3);
 }
