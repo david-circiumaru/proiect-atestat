@@ -247,3 +247,21 @@ canvas {
     margin: 5px 0 0;
     font-size: 14px;
 }
+
+.more {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    margin-top: 10px;
+}
+
+/* când e deschis */
+.card.active .more {
+    max-height: 200px; /* cât să încapă textul */
+}
+
+/* efect vizual */
+.card.active {
+    background: #725AC1;
+    color: white;
+}

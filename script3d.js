@@ -127,4 +127,8 @@ window.closeModal = function(id) {
     document.getElementById(id).classList.add('hidden');
 }
 
+window.toggleCard = function(card) {
+    card.classList.toggle("active");
+}
+
 tick();
