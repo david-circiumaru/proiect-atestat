@@ -80,7 +80,7 @@ window.addEventListener('keydown', (event) => {
 
 // IMPORTANT: Put your file in the 'public' folder. 
 // Vite will then find it at exactly '/fundal.glb'
-loader.load('/fundal2.glb', (glb) => {
+loader.load('/fundal4.glb', (glb) => {
     console.log("Model loaded successfully!");
     const model = glb.scene;
     scene.add(model);
@@ -109,5 +109,16 @@ const tick = () => {
 
     window.requestAnimationFrame(tick);
 };
+
+function isMobile() {
+    return window.innerWidth <= 768;
+}
+
+// după ce setezi camera.position.z
+if (isMobile()) {
+    camera.position.z = 8; // mai departe = model mai mic
+} else {
+    camera.position.z = 5; // desktop
+}
 
 tick();
