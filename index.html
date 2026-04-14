@@ -107,6 +107,41 @@
         </div>
     </div>
 
+    <div id="modal-contact" class="modal hidden">
+     <div class="modal-content">
+
+        <button class="close-btn" onclick="closeModal('modal-contact')">
+            <div class="X"></div>
+            <div class="Y"></div>
+        </button>
+
+        <h2>Contact</h2>
+
+        <div class="recipes">
+
+            <div class="card">
+                <h3>Instagram</h3>
+                <p>
+                    <a href="https://instagram.com/david_6374" target="_blank">
+                        @david_6374
+                    </a>
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Email</h3>
+                <p>
+                    <a href="mailto:david.circiumaru@gmail.com">
+                        david.circiumaru@gmail.com
+                    </a>
+                </p>
+            </div>
+
+        </div>
+
+     </div>
+    </div>
+
     <!-- FUNDAL 3D -->
     <canvas id="experience-canvas"></canvas>
 
@@ -114,7 +149,9 @@
     <script type="module" src="script3d.js"></script>
 
     <!-- CONTACT -->
-    
+    <button class="contact-btn" onclick="openModal('modal-contact')">
+     Contact
+    </button>
         
 
 </body>

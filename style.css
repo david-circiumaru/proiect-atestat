@@ -287,3 +287,31 @@ canvas {
 /* =======================
    CONTACT
 ======================= */
+.contact-btn {
+    position: fixed;
+    left: 40px;
+    bottom: 40px;
+
+    width: 200px;
+
+    padding: 20px;
+    font-size: 20px;
+
+    color: #725AC1;
+    background: rgba(255,255,255,0.9);
+
+    border: 3px solid #725AC1;
+    border-radius: 12px;
+
+    cursor: pointer;
+    transition: 0.4s ease;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    z-index: 5;
+}
+
+.contact-btn:hover {
+    background: #725AC1;
+    color: white;
+    transform: scale(1.05);
+}
