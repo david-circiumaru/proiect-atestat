@@ -21,6 +21,7 @@
     <div class="content">
         <button onclick="openModal('modal-main')">Feluri principale</button>
         <button onclick="openModal('modal-dessert')">Deserturi</button>
+        <button onclick="openModal('modal-contact')">Contact</button>
     </div>
 
     <!-- ================= MODAL MAIN ================= -->
@@ -107,61 +108,53 @@
         </div>
     </div>
 
-<div id="modal-contact" class="modal hidden">
-	<div class="modal-content">
+    <!-- ================= MODAL CONTACT ================= -->
+    <div id="modal-contact" class="modal hidden">
+        <div class="modal-content">
 
-		<button class="close-btn" onclick="closeModal('modal-contact')">
-			<div class="X"></div>
-			<div class="Y"></div>
-		</button>
+            <button class="close-btn" onclick="closeModal('modal-contact')">
+                <div class="X"></div>
+                <div class="Y"></div>
+            </button>
 
-		<h2>Contact</h2>
+            <h2>Contact</h2>
 
-		<div class="recipes">
+            <div class="recipes">
 
-			<div class="card">
-				<h3>
-					<img 
-						src="https://cdn-icons-png.flaticon.com/512/174/174855.png" 
-						alt="Instagram" 
-						style="width:22px; vertical-align:middle; margin-right:8px;"
-					>
-					Instagram
-				</h3>
-				<p>
-					<a href="https://instagram.com/david_6374" target="_blank">
-						@david_6374
-					</a>
-				</p>
-			</div>
+                <div class="card">
+                    <h3>
+                        <img 
+                            src="https://cdn-icons-png.flaticon.com/512/174/174855.png"
+                            style="width:22px; vertical-align:middle; margin-right:8px;"
+                        >
+                        Instagram
+                    </h3>
+                    <p>
+                        <a href="https://instagram.com/david_6374" target="_blank">
+                            @david_6374
+                        </a>
+                    </p>
+                </div>
 
-			<div class="card">
-				<h3>
-					📧 Email
-				</h3>
-				<p>
-					<a href="mailto:david.circiumaru@gmail.com">
-						david.circiumaru@gmail.com
-					</a>
-				</p>
-			</div>
+                <div class="card">
+                    <h3>📧 Email</h3>
+                    <p>
+                        <a href="mailto:david.circiumaru@gmail.com">
+                            david.circiumaru@gmail.com
+                        </a>
+                    </p>
+                </div>
 
-		</div>
+            </div>
 
-	</div>
-</div>
+        </div>
+    </div>
 
     <!-- FUNDAL 3D -->
     <canvas id="experience-canvas"></canvas>
 
     <!-- SCRIPT -->
     <script type="module" src="script3d.js"></script>
-
-    <!-- CONTACT -->
-    <button class="contact-btn" onclick="openModal('modal-contact')">
-     Contact
-    </button>
-        
 
 </body>
 </html>
