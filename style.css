@@ -225,7 +225,7 @@ canvas {
 }
 
 .card.active .more {
-    max-height: 250px;
+    max-height: 1000px;
 }
 
 .card.active {
