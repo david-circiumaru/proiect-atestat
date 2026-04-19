@@ -7,6 +7,7 @@ const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x555555); // FIXED
 
 const canvas = document.querySelector("#experience-canvas");
+
 const sizes = {
     width: window.innerWidth,
     height: window.innerHeight
@@ -20,7 +21,7 @@ const camera = new THREE.PerspectiveCamera(
     1000
 );
 
-// Coordinates 
+// Coordinates
 camera.position.set(10.45, 2.24, -0.09);
 
 // 3. Renderer Setup
@@ -32,7 +33,7 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-// 4. Orbit Controls 
+// 4. Orbit Controls
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 
@@ -70,8 +71,6 @@ manager.onLoad = () => {
     canRender = true;
 };
 
-
-
 const loader = new GLTFLoader(manager);
 
 window.addEventListener('keydown', (event) => {
@@ -86,19 +85,12 @@ window.addEventListener('keydown', (event) => {
     }
 });
 
-
 loader.load(
     '/fundal2.glb',
     (glb) => {
         console.log("Model loaded successfully!");
         const model = glb.scene;
         scene.add(model);
-        model.traverse((child) => {
-            if (child.name === "Cube") {
-                fridgeModel = child;
-                console.log("Cube found!");
-            }
-        });
     },
     undefined,
     (error) => {
@@ -130,7 +122,6 @@ function isMobile() {
     return window.innerWidth <= 768;
 }
 
-
 if (isMobile()) {
     camera.position.z = 10;
 }
@@ -148,40 +139,4 @@ window.toggleCard = function (card) {
     card.classList.toggle("active");
 };
 
-// =======================
-// CLICK PE FRIGIDER (Cube) -> MODAL
-// =======================
-
-let fridgeModel = null;
-
-// raycaster pentru click 3D
-const raycaster = new THREE.Raycaster();
-const mouse = new THREE.Vector2();
-
-
-// CLICK handler
-window.addEventListener("click", (event) => {
-
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-    raycaster.setFromCamera(mouse, camera);
-
-    const intersects = raycaster.intersectObjects(scene.children, true);
-
-    if (intersects.length > 0) {
-        const clicked = intersects[0].object;
-
-        if (clicked.name === "Cube" || clicked === fridgeModel) {
-
-            // glow simplu
-            if (clicked.material) {
-                clicked.material.emissive = new THREE.Color(0x333333);
-                clicked.material.emissiveIntensity = 1;
-            }
-
-            // deschide modal
-            window.openModal("fridge-modal");
-        }
-    }
-});
+tick();
