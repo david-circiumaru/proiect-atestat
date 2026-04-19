@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-// 1. Scene Setup
+// Scene Setup
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x555555);
 
@@ -13,7 +13,7 @@ const sizes = {
     height: window.innerHeight
 };
 
-// 2. Camera Setup
+// Camera Setup
 const camera = new THREE.PerspectiveCamera(
     25,
     sizes.width / sizes.height,
@@ -23,7 +23,7 @@ const camera = new THREE.PerspectiveCamera(
 
 camera.position.set(10.45, 2.24, -0.09);
 
-// 3. Renderer Setup
+
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
     antialias: true
@@ -32,7 +32,7 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-// 4. Orbit Controls
+// Orbit Controls
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 
@@ -47,7 +47,7 @@ controls.maxAzimuthAngle = 130 * Math.PI / 180;
 controls.minDistance = 5;
 controls.maxDistance = 13;
 
-// 5. Lighting
+
 const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
 scene.add(ambientLight);
 
@@ -55,7 +55,7 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
 directionalLight.position.set(5, 10, 7);
 scene.add(directionalLight);
 
-// 7. Loading Manager & GLTF Loader
+
 const manager = new THREE.LoadingManager();
 
 manager.onLoad = () => {
@@ -65,7 +65,7 @@ manager.onLoad = () => {
 const loader = new GLTFLoader(manager);
 
 // =======================
-// MODAL STATE (FIX)
+// MODAL STATE
 // =======================
 let activeModal = null;
 
@@ -73,7 +73,7 @@ function setModalState(isOpen) {
     activeModal = isOpen ? "open" : null;
 }
 
-// UI FUNCTIONS (MODIFICATE)
+// UI FUNCTIONS
 window.openModal = function (id) {
     document.getElementById(id).classList.remove('hidden');
     setModalState(true);
@@ -117,7 +117,7 @@ loader.load(
 // CLICK EVENT
 window.addEventListener("click", (event) => {
 
-    // 🚫 blochează click pe scenă dacă e modal deschis
+
     if (activeModal !== null) return;
 
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
@@ -142,7 +142,7 @@ window.addEventListener("click", (event) => {
     }
 });
 
-// 8. Resize
+
 window.addEventListener("resize", () => {
     sizes.width = window.innerWidth;
     sizes.height = window.innerHeight;
@@ -154,7 +154,7 @@ window.addEventListener("resize", () => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 });
 
-// 9. Animation Loop
+
 const tick = () => {
     controls.update();
     renderer.render(scene, camera);
