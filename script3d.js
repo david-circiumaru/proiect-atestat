@@ -197,7 +197,7 @@ window.addEventListener("click", (event) => {
 
             // redirect după mic delay
             setTimeout(() => {
-                window.location.href = "secret.html";
+                window.location.href = "./secret.html";
             }, 400);
         }
     }
