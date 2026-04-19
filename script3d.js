@@ -4,7 +4,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 // 1. Scene Setup
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x555555);
+scene.background = new THREE.Color(0x555555); // FIXED
 
 const canvas = document.querySelector("#experience-canvas");
 
@@ -21,6 +21,7 @@ const camera = new THREE.PerspectiveCamera(
     1000
 );
 
+// Coordinates
 camera.position.set(10.45, 2.24, -0.09);
 
 // 3. Renderer Setup
@@ -55,17 +56,19 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
 directionalLight.position.set(5, 10, 7);
 scene.add(directionalLight);
 
-// 6. Loading Manager & GLTF Loader
+// 7. Loading Manager & GLTF Loader
 const manager = new THREE.LoadingManager();
+let canRender = false;
 
 manager.onLoad = () => {
     console.log("All assets loaded!");
+    canRender = true;
 };
 
 const loader = new GLTFLoader(manager);
 
 // =======================
-// CLICK PE CUBE + FLASH
+// 👇 ADĂUGAT: CLICK PE CUBE
 // =======================
 
 let fridgeModel = null;
@@ -81,6 +84,7 @@ loader.load(
         const model = glb.scene;
         scene.add(model);
 
+        // găsim Cube
         model.traverse((child) => {
             if (child.name === "Cube") {
                 fridgeModel = child;
@@ -94,7 +98,7 @@ loader.load(
     }
 );
 
-// CLICK
+// click handler
 window.addEventListener("click", (event) => {
 
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
@@ -109,30 +113,19 @@ window.addEventListener("click", (event) => {
 
         if (clicked.name === "Cube" || clicked === fridgeModel) {
 
-            // 💡 FLASH PE ECRAN
-            const flash = document.getElementById("flash");
-
-            flash.style.opacity = "1";
-
-            setTimeout(() => {
-                flash.style.opacity = "0";
-            }, 200);
-
-            // optional mic glow (safe)
-            if (clicked.material && clicked.material.emissive) {
-                clicked.material.emissive = new THREE.Color(0x00ffff);
-                clicked.material.emissiveIntensity = 1.5;
+            // mic efect vizual
+            if (clicked.material) {
+                clicked.material.emissive = new THREE.Color(0x333333);
+                clicked.material.emissiveIntensity = 1;
             }
 
-            // ⏱️ DELAY MODAL
-            setTimeout(() => {
-                window.openModal("fridge-modal");
-            }, 400);
+            // deschide modal
+            window.openModal("fridge-modal");
         }
     }
 });
 
-// 8. Resize
+// 8. Handle Window Resize
 window.addEventListener("resize", () => {
     sizes.width = window.innerWidth;
     sizes.height = window.innerHeight;
@@ -148,6 +141,7 @@ window.addEventListener("resize", () => {
 const tick = () => {
     controls.update();
     renderer.render(scene, camera);
+
     window.requestAnimationFrame(tick);
 };
 
@@ -159,7 +153,7 @@ if (isMobile()) {
     camera.position.z = 10;
 }
 
-// UI
+// UI FUNCTIONS
 window.openModal = function (id) {
     document.getElementById(id).classList.remove('hidden');
 };
