@@ -55,17 +55,17 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
 directionalLight.position.set(5, 10, 7);
 scene.add(directionalLight);
 
-// 6. Loading
+// 6. Loading Manager & GLTF Loader
 const manager = new THREE.LoadingManager();
 
 manager.onLoad = () => {
     console.log("All assets loaded!");
 };
 
-const loader = new THREE.GLTFLoader(manager);
+const loader = new GLTFLoader(manager);
 
 // =======================
-// FRIDGE CLICK LOGIC
+// CLICK PE CUBE + FLASH
 // =======================
 
 let fridgeModel = null;
@@ -87,10 +87,14 @@ loader.load(
                 console.log("Cube found!");
             }
         });
+    },
+    undefined,
+    (error) => {
+        console.error("Error loading model:", error);
     }
 );
 
-// CLICK EVENT
+// CLICK
 window.addEventListener("click", (event) => {
 
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
@@ -105,25 +109,30 @@ window.addEventListener("click", (event) => {
 
         if (clicked.name === "Cube" || clicked === fridgeModel) {
 
-            // 💡 GLOW
-            if (clicked.material) {
-                if (clicked.material.emissive) {
-                    clicked.material.emissive = new THREE.Color(0x00ffff);
-                    clicked.material.emissiveIntensity = 2;
-                } else {
-                    clicked.material.color = new THREE.Color(0x00ffff);
-                }
+            // 💡 FLASH PE ECRAN
+            const flash = document.getElementById("flash");
+
+            flash.style.opacity = "1";
+
+            setTimeout(() => {
+                flash.style.opacity = "0";
+            }, 200);
+
+            // optional mic glow (safe)
+            if (clicked.material && clicked.material.emissive) {
+                clicked.material.emissive = new THREE.Color(0x00ffff);
+                clicked.material.emissiveIntensity = 1.5;
             }
 
-            // ⏱️ DELAY + MODAL
+            // ⏱️ DELAY MODAL
             setTimeout(() => {
                 window.openModal("fridge-modal");
-            }, 500);
+            }, 400);
         }
     }
 });
 
-// Resize
+// 8. Resize
 window.addEventListener("resize", () => {
     sizes.width = window.innerWidth;
     sizes.height = window.innerHeight;
@@ -135,7 +144,7 @@ window.addEventListener("resize", () => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 });
 
-// Animation
+// 9. Animation Loop
 const tick = () => {
     controls.update();
     renderer.render(scene, camera);
