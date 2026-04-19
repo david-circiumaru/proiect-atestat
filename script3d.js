@@ -93,6 +93,12 @@ loader.load(
         console.log("Model loaded successfully!");
         const model = glb.scene;
         scene.add(model);
+        model.traverse((child) => {
+            if (child.name === "Cube") {
+                fridgeModel = child;
+                console.log("Cube found!");
+            }
+        });
     },
     undefined,
     (error) => {
@@ -152,22 +158,6 @@ let fridgeModel = null;
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
-// când se încarcă modelul, îl păstrăm și căutăm Cube
-loader.load(
-    '/fundal2.glb',
-    (glb) => {
-        console.log("Model loaded successfully!");
-        const model = glb.scene;
-        scene.add(model);
-
-        model.traverse((child) => {
-            if (child.name === "Cube") {
-                fridgeModel = child;
-                console.log("Cube found!");
-            }
-        });
-    }
-);
 
 // CLICK handler
 window.addEventListener("click", (event) => {
