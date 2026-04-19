@@ -308,17 +308,14 @@ canvas {
    IMAGINI REȚETE
 ======================= */
 .recipe-img {
-    width: 100%;
+    width: 60%;          
     border-radius: 12px;
     margin-top: 10px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: all 0.4s ease;
+    display: block;
 }
 
-/* CLICK = MARE */
-.recipe-img:focus {
-    transform: scale(1.8);
-    z-index: 100;
-    position: relative;
-    outline: none;
+
+.card.active .recipe-img {
+    width: 100%;         
 }
