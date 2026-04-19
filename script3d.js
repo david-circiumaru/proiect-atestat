@@ -23,7 +23,6 @@ const camera = new THREE.PerspectiveCamera(
 
 camera.position.set(10.45, 2.24, -0.09);
 
-
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
     antialias: true
@@ -31,6 +30,9 @@ const renderer = new THREE.WebGLRenderer({
 
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+//MOBIL TOUCH
+renderer.domElement.style.touchAction = "none";
 
 // Orbit Controls
 const controls = new OrbitControls(camera, renderer.domElement);
@@ -47,7 +49,7 @@ controls.maxAzimuthAngle = 130 * Math.PI / 180;
 controls.minDistance = 5;
 controls.maxDistance = 13;
 
-
+// Light
 const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
 scene.add(ambientLight);
 
@@ -55,7 +57,7 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
 directionalLight.position.set(5, 10, 7);
 scene.add(directionalLight);
 
-
+// Loader
 const manager = new THREE.LoadingManager();
 
 manager.onLoad = () => {
@@ -73,7 +75,6 @@ function setModalState(isOpen) {
     activeModal = isOpen ? "open" : null;
 }
 
-// UI FUNCTIONS
 window.openModal = function (id) {
     document.getElementById(id).classList.remove('hidden');
     setModalState(true);
@@ -89,7 +90,7 @@ window.toggleCard = function (card) {
 };
 
 // =======================
-// CLICK PE CUBE
+// CLICK + TOUCH
 // =======================
 
 let fridgeModel = null;
@@ -114,14 +115,18 @@ loader.load(
     }
 );
 
-// CLICK EVENT
-window.addEventListener("click", (event) => {
-
+//(CLICK + TOUCH)
+function handleInteraction(event) {
 
     if (activeModal !== null) return;
 
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    const x = event.clientX ?? event.touches?.[0]?.clientX;
+    const y = event.clientY ?? event.touches?.[0]?.clientY;
+
+    if (x === undefined || y === undefined) return;
+
+    mouse.x = (x / window.innerWidth) * 2 - 1;
+    mouse.y = -(y / window.innerHeight) * 2 + 1;
 
     raycaster.setFromCamera(mouse, camera);
 
@@ -140,9 +145,13 @@ window.addEventListener("click", (event) => {
             window.openModal("fridge-modal");
         }
     }
-});
+}
 
+// EVENTS
+window.addEventListener("click", handleInteraction);
+window.addEventListener("touchstart", handleInteraction);
 
+// Resize
 window.addEventListener("resize", () => {
     sizes.width = window.innerWidth;
     sizes.height = window.innerHeight;
@@ -154,7 +163,7 @@ window.addEventListener("resize", () => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 });
 
-
+// Animation Loop
 const tick = () => {
     controls.update();
     renderer.render(scene, camera);
