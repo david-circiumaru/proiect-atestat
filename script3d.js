@@ -143,12 +143,16 @@ window.toggleCard = function (card) {
 };
 
 // =======================
-// CLICK PE FRIGIDER (Cube)
+// CLICK PE FRIGIDER (Cube) -> MODAL
 // =======================
 
 let fridgeModel = null;
 
-// când se încarcă modelul, îl salvăm ca să-l putem detecta la click
+// raycaster pentru click 3D
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+
+// când se încarcă modelul, îl păstrăm și căutăm Cube
 loader.load(
     '/fundal2.glb',
     (glb) => {
@@ -156,51 +160,38 @@ loader.load(
         const model = glb.scene;
         scene.add(model);
 
-        // CAUTĂ obiectul numit "Cube"
         model.traverse((child) => {
             if (child.name === "Cube") {
                 fridgeModel = child;
-                console.log("Fridge Cube found!");
+                console.log("Cube found!");
             }
         });
-    },
-    undefined,
-    (error) => {
-        console.error("Error loading model:", error);
     }
 );
 
-// raycaster pentru click pe 3D
-const raycaster = new THREE.Raycaster();
-const mouse = new THREE.Vector2();
-
+// CLICK handler
 window.addEventListener("click", (event) => {
 
-    // transformă poziția mouse-ului
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
     mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
     raycaster.setFromCamera(mouse, camera);
 
-    // verifică intersecții
     const intersects = raycaster.intersectObjects(scene.children, true);
 
     if (intersects.length > 0) {
         const clicked = intersects[0].object;
 
-        // dacă e Cube 
         if (clicked.name === "Cube" || clicked === fridgeModel) {
 
-            // mic efect de "lumina"
-            clicked.material.emissive = new THREE.Color(0x222222);
-            clicked.material.emissiveIntensity = 1;
+            // glow simplu
+            if (clicked.material) {
+                clicked.material.emissive = new THREE.Color(0x333333);
+                clicked.material.emissiveIntensity = 1;
+            }
 
-            // redirect după mic delay
-            setTimeout(() => {
-                window.location.href = "secret.html";
-            }, 400);
+            // deschide modal
+            window.openModal("fridge-modal");
         }
     }
 });
-
-tick();
