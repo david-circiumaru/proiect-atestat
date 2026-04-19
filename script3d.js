@@ -42,12 +42,6 @@ controls.target.set(-0.61, 2.04, -0.01);
 controls.minPolarAngle = 0;
 controls.maxPolarAngle = Math.PI / 2;
 
-// controls.minAzimuthAngle = -Math.PI / -3;
-// controls.minAzimuthAngle = -Math.PI / 3;
-// controls.maxAzimuthAngle = Math.PI / 3;
-// controls.minPolarAngle = Math.PI / 4;
-// controls.maxPolarAngle = 3 * Math.PI / 4;
-
 controls.minAzimuthAngle = 50 * Math.PI / 180;
 controls.maxAzimuthAngle = 130 * Math.PI / 180;
 
@@ -73,30 +67,63 @@ manager.onLoad = () => {
 
 const loader = new GLTFLoader(manager);
 
-window.addEventListener('keydown', (event) => {
-    if (event.code === 'Space') {
-        const pos = camera.position;
-        const tar = controls.target;
+// =======================
+// 👇 ADĂUGAT: CLICK PE CUBE
+// =======================
 
-        console.log('--- CAMERA SETTINGS ---');
-        console.log(`Position: ${pos.x.toFixed(2)}, ${pos.y.toFixed(2)}, ${pos.z.toFixed(2)}`);
-        console.log(`Target: ${tar.x.toFixed(2)}, ${tar.y.toFixed(2)}, ${tar.z.toFixed(2)}`);
-        console.log('-----------------------');
-    }
-});
+let fridgeModel = null;
+
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
 
 loader.load(
     '/fundal2.glb',
     (glb) => {
         console.log("Model loaded successfully!");
+
         const model = glb.scene;
         scene.add(model);
+
+        // găsim Cube
+        model.traverse((child) => {
+            if (child.name === "Cube") {
+                fridgeModel = child;
+                console.log("Cube found!");
+            }
+        });
     },
     undefined,
     (error) => {
         console.error("Error loading model:", error);
     }
 );
+
+// click handler
+window.addEventListener("click", (event) => {
+
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster.setFromCamera(mouse, camera);
+
+    const intersects = raycaster.intersectObjects(scene.children, true);
+
+    if (intersects.length > 0) {
+        const clicked = intersects[0].object;
+
+        if (clicked.name === "Cube" || clicked === fridgeModel) {
+
+            // mic efect vizual
+            if (clicked.material) {
+                clicked.material.emissive = new THREE.Color(0x333333);
+                clicked.material.emissiveIntensity = 1;
+            }
+
+            // deschide modal
+            window.openModal("fridge-modal");
+        }
+    }
+});
 
 // 8. Handle Window Resize
 window.addEventListener("resize", () => {
